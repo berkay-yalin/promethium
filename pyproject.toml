@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "python-probabilities"
+version = "0.1.0"
+description = ""
+authors = ["berkay-yalin <66202981+berkay-yalin@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "python_probabilities"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
