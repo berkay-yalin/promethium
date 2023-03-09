@@ -1,6 +1,7 @@
 from decimal import Decimal
 import math
 
+
 def BinomialPD_validate(k: object, n: object, p: object) -> None:
 	if not isinstance(k, int) or k < 0:
 		raise TypeError("Input value x must be positive integer")
@@ -17,14 +18,12 @@ def BinomialPD(kInput: int, nInput: int, pInput: float) -> Decimal:
 	return BinomialPD_calculate(kInput, nInput, Decimal(str(pInput)))
 
 
-
 def BinomialCD_calculate(k: int, n: int, p: Decimal) -> Decimal:
 	return sum([BinomialPD_calculate(i, n, p) for i in range(k + 1)])
 
 def BinomialCD(kInput: int, nInput: int, pInput: float) -> Decimal:
 	BinomialPD_validate(kInput, nInput, pInput)
 	return BinomialCD_calculate(kInput, nInput, Decimal(str(pInput)))
-
 
 
 def InvBinomialCD_validate(x: object, n: object, p: object) -> None:
@@ -44,10 +43,11 @@ def InvBinomialCD_calculate(x: Decimal, n: int, p: Decimal) -> int:
 		if tempX > x:
 			return tempN
 
-def InvBinomialCD(xInput: float, nInput: int, pInput: float | int) -> int:
+def InvBinomialCD(xInput: float, nInput: int, pInput: float) -> int:
 	InvBinomialCD_validate(xInput, nInput, pInput)
 	return InvBinomialCD_calculate(
 		Decimal(str(xInput)),
 		nInput,
 		Decimal(str(pInput)),
 	)
+
