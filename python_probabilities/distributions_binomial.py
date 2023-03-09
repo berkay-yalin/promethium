@@ -57,7 +57,7 @@ def InvBinomialCD_calculate(x: Decimal, n: int, p: Decimal) -> int:
 		return upper_k_bound
 	return lower_k_bound
 
-def InvBinomialCD(xInput: float, nInput: int, pInput: float | int) -> int:
+def InvBinomialCD(xInput: float, nInput: int, pInput: float) -> int:
 	InvBinomialCD_validate(xInput, nInput, pInput)
 	return InvBinomialCD_calculate(
 		Decimal(str(xInput)),
