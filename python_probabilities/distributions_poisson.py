@@ -16,16 +16,12 @@ def PoissonPD(kInput: int, pInput: float) -> float:
 	PoissonPD_validate(kInput, pInput)
 	return PoissonPD_calculate(kInput, Fraction(str(pInput)))
 
+def PoissonCD_calculate(k: int, p: Fraction) -> float:
+	return sum([PoissonPD_calculate(i, p) for i in range(k + 1)])
 
-
-def PoissonCD_validate():
-    pass
-
-def PoissonCD_calculate():
-    pass
-
-def PoissonCD():
-    pass
+def PoissonCD(kInput: int, pInput: float) -> float:
+	PoissonPD_validate(kInput, pInput)
+	return PoissonCD_calculate(kInput, Fraction(str(pInput)))
 
 
 
