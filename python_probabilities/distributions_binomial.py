@@ -37,30 +37,17 @@ def InvBinomialCD_validate(x: object, n: object, p: object) -> None:
 
 def InvBinomialCD_calculate(x: Decimal, n: int, p: Decimal) -> int:
 	for i in range(n + 1):
-		if BinomialCD_calculate(i, n, p) == x:
+		tempN = i - 1
+		tempX = BinomialCD_calculate(tempN, n, p)
+		if tempX == x:
 			return i
-
-	for i in range(n + 1):
-		tempX = BinomialCD_calculate(i, n, p)
 		if tempX > x:
-			upper_k_bound: int = i
-			upper_diff: Decimal = abs(x - tempX)
-			break
-	for i in reversed(range(n)):
-		tempX = BinomialCD_calculate(i, n, p)
-		if tempX < x:
-			lower_k_bound: int = i
-			lower_diff: Decimal = abs(x - tempX)
-			break
-
-	if upper_diff < lower_diff:
-		return upper_k_bound
-	return lower_k_bound
+			return tempN
 
 def InvBinomialCD(xInput: float, nInput: int, pInput: float) -> int:
 	InvBinomialCD_validate(xInput, nInput, pInput)
 	return InvBinomialCD_calculate(
 		Decimal(str(xInput)),
 		nInput,
-		Decimal(str(pInput))
+		Decimal(str(pInput)),
 	)
