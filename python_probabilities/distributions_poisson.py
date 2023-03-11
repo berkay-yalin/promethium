@@ -23,13 +23,25 @@ def PoissonCD(kInput: int, pInput: float) -> float:
 	PoissonPD_validate(kInput, pInput)
 	return PoissonCD_calculate(kInput, Fraction(str(pInput)))
 
+def InvPoissonCD_validate(area: object, l: object):
+	if not isinstance(area, float):
+		raise TypeError("Input value area must be float")
+	if not isinstance(l, (int, float)):
+		raise TypeError("Input value l must be float")
+	if area < 0 or area > 1:
+		raise ValueError("Input value area out of domain")
+    
+def InvPoissonCD_calculate(area: Fraction, l: Fraction):
+	cumulative = 0
+	ppd = 0
+	i = 0
+	while cumulative <= area:
+		ppd = PoissonPD_calculate(i, l)
+		cumulative += ppd
+		i += 1
+	
+	return i - 1
 
-
-def InvPoissonCD_validate():
-    pass
-
-def InvPoissonCD_calculate():
-    pass
-
-def InvPoissonCD():
-    pass
+def InvPoissonCD(area: float, l: float):
+	InvPoissonCD_validate(area, l)
+	return InvPoissonCD_calculate(Fraction(str(area)), Fraction(str(l)))
