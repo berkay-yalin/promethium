@@ -36,13 +36,10 @@ def InvPoissonCD_validate(area: object, l: object):
 
 def InvPoissonCD_calculate(area: Fraction, l: Fraction):
 	cumulative = 0
-	ppd = 0
 	i = 0
 	while cumulative <= area:
-		ppd = PoissonPD_calculate(i, l)
-		cumulative += ppd
+		cumulative += PoissonPD_calculate(i, l)
 		i += 1
-
 	return i - 1
 
 def InvPoissonCD(area: float, l: float):
