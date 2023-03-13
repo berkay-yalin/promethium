@@ -6,3 +6,6 @@ from .distributions_poisson import PoissonPD as Ppd
 from .distributions_poisson import PoissonCD as Pcd
 from .distributions_poisson import InvPoissonCD as InvP
 
+from .distributions_negative_binomial import NegativeBinomialPD as NegBpd
+from .distributions_negative_binomial import NegativeBinomialCD as NegBcd
+from .distributions_negative_binomial import InvNegativeBinomialCD as InvNegB
