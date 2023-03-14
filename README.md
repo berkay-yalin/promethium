@@ -9,6 +9,10 @@
   - [Poisson Probability Distribution](#poisson-probability-distribution)
   - [Poisson Cumulative Distribution](#poisson-cumulative-distribution)
   - [Inverse Poisson Cumulative Distribution](#inverse-poisson-cumulative-distribution)
+- [Negative Binomial Distributions](#negative-binomial-distributions)
+  - [Negative Binomial Probability Distribution](#negative-binomial-probability-distribution)
+  - [Negative Binomial Cumulative Distribution](#negative-binomial-cumulative-distribution)
+  - [Inverse Negative Binomial Cumulative Distribution](#inverse-negative-binomial-cumulative-distribution)
 
 ## Binomial Distributions
 ### Binomial Probability Distribution
@@ -55,7 +59,7 @@ Given the probability for a cumulative probability function, the value for `r` (
 If a random variable `X` has the poisson distribution `Po(λ)`, then its **probability mass function** can be calculated via `Ppd(k, λ)`.\
 *(where `k` is the number of occurrences and `λ` is the expected number of occurrences)*
 
-The code below would be to calculate `P(X=3)` for the binomial distribution `X~Po(6)`.
+The code below would be to calculate `P(X=3)` for the poisson distribution `X~Po(6)`.
 
 ```python
 >>> from python_probabilities import Ppd
@@ -64,10 +68,10 @@ The code below would be to calculate `P(X=3)` for the binomial distribution `X~P
 ```
 
 ### Poisson Cumulative Distribution
-For the binomial distribution `X~Po(λ)`, the **cumulative probability function** can be calculated via `Pcd(k, λ)`.\
+For the poisson distribution `X~Po(λ)`, the **cumulative probability function** can be calculated via `Pcd(k, λ)`.\
 *(where `k` is the number of occurrences and `λ` is the expected number of occurrences)*
 
-The code below would be to calculate `P(X≤3)` for the binomial distribution `X~Po(6)`.
+The code below would be to calculate `P(X≤3)` for the poisson distribution `X~Po(6)`.
 
 ```python
 >>> from python_probabilities import Pcd
@@ -88,4 +92,44 @@ Given the probability for a cumulative probability function, the value for `k` (
 7
 >>> Pcd(7, 8)
 0.4529608094869947
+```
+
+## Negative Binomial Distributions
+### Negative Binomial Probability Distribution
+If a random variable `X` has the negative binomial distribution `X~NegB(r, p)`, then its **probability mass function** can be calculated via `NegBpd(k, r, p)`.\
+*(where `k` is the number of trials, `r` is the number of successes and `p` is the probability of success)*
+
+The code below would be to calculate `P(X=11)` for the negative binomial distribution `X~NegB(7, 0.33)`.
+
+```python
+>>> from python_probabilities import NegBpd
+>>> NegBpd(11, 7, 0.33)
+0.0180349974264836715570
+```
+
+### Negative Binomial Cumulative Distribution
+For the negative binomial distribution `X~NegB(r, p)`, the **cumulative probability function** can be calculated via `NegBpd(k, r, p)`.\
+*(where `k` is the number of trials, `r` is the number of successes and `p` is the probability of success)*
+
+The code below would be to calculate `P(X≤11)` for the negative binomial distribution `X~NegB(7, 0.33)`.
+
+```python
+>>> from python_probabilities import NegBcd
+>>> NegBcd(11, 7, 0.33)
+0.0365839468092168743970
+```
+
+*"A cumulative probability function for a random variable X tells you the sum of all the individual
+probabilities up to and including the given value of x in the calculation for P(X < x)".*
+
+### Inverse Negative Binomial Cumulative Distribution
+Given the probability for a cumulative probability function, the value for `k` (number of trials) can be calculated via `InvNegB(x, r, p)`.\
+*(where `x` is the probability, `r` is the number of successes and `p` is the probability of success)*
+
+```python
+>>> from python_probabilities import *
+>>> InvNegB(0.25, 7, 0.33)
+16
+>>> NegBcd(16, 7, 0.33)
+0.2531163072556113777366214532
 ```
