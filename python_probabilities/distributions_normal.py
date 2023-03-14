@@ -44,10 +44,10 @@ def InvNormalCD_validate(tail: object, area: object, sd:object, mean:object):
 		raise TypeError("Input sd value is invalid")
 
 
-def InvPoissonCD_calculate(tail: object, area: object, sd: object, mean: object):
+def InvNormalCD_calculate(tail: object, area: object, sd: object, mean: object):
 	pass
 
 
-def InvPoissonCD(tail: object, area: object, sd: object, mean: object):
+def InvNormalCD(tail: object, area: object, sd: object, mean: object):
 	InvPoissonCD_validate(tail, area, sd, mean)
 	return InvPoissonCD_calculate(tail, area, sd, mean)
