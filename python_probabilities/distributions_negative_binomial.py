@@ -19,14 +19,12 @@ def NegativeBinomialPD_calculate(x: int, r: int, p: Decimal) -> Decimal:
 	return math.comb(x-1, r-1) * (p**r) * ((1-p) ** (x-r))
 
 
-def NegativeBinomialCD():
-	pass
+def NegativeBinomialCD(xInput: int, rInput: int, pInput: float) -> Decimal:
+	NegativeBinomialPD_validate(xInput, rInput, pInput)
+	return NegativeBinomialCD_calculate(xInput, rInput, pInput)
 
-def NegativeBinomialCD_validate():
-	pass
-
-def NegativeBinomialCD_calculate():
-	pass
+def NegativeBinomialCD_calculate(x: int, r: int, p: Decimal):
+	return sum([NegativeBinomialPD(i, r, p) for i in range(r, x+1)])
 
 
 def InvNegativeBinomialCD():
