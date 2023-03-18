@@ -1,30 +1,41 @@
-from fractions import Fraction
+from decimal import Decimal
+from typing import Union, Any
 import math
 
-def NormalPD_validate(mean: object, sd: object, x: object) -> None:
-	if not isinstance(mean, (int,float)):
-		raise TypeError("Input mean value is invalid")
-	if not isinstance(sd, (int,float)):
-		raise TypeError("Input sd value is invalid")
+PI = Decimal(str(math.pi))
+EULER = Decimal(str(math.e))
+
+def NormalPD_validate(x: Any, sd: Any, mu: Any) -> None:
 	if not isinstance(x, (int, float)):
 		raise TypeError("Input x value is invalid")
+	if not isinstance(mu, (int, float)):
+		raise TypeError("Input µ value is invalid")
+	if not isinstance(sd, (int, float)):
+		raise TypeError("Input σ value is invalid")
 
-def NormalPD_calculate(x: float, mean: float, sd: float) -> float:
-	lhs = (1/(sd*((math.pi*2)**(1/2))))
-	rhs = (1/(math.e)**(((x-mean)**2)/(2*sd**2)))
+def NormalPD_calculate(x: Decimal, sd: Decimal, mu: Decimal) -> Decimal:
+	lhs = (1/(sd*((PI*2)**(Decimal('0.5')))))
+	rhs = (1/(EULER)**(((x-mu)**2)/(2*sd**2)))
 	return(lhs*rhs)
 
-def NormalPD(x: float, mean: float, sd: float) -> float:
-	NormalPD_validate(x, mean, sd)
-	return NormalPD_calculate(x, mean, sd)
+def NormalPD(x: Union[int, float], sd: Union[int, float], mu: Union[int, float]) -> float:
+	NormalPD_validate(x, sd, mu)
+	return float(NormalPD_calculate(
+		Decimal(str(x)),
+		Decimal(str(sd)),
+		Decimal(str(mu))
+	))
 
+def NormalCD_calculate(x: Decimal, mu: Decimal, sd: Decimal) -> Decimal:
+	return Decimal('0.5')*(1+Decimal(str(math.erf((x-mu)/(sd*(Decimal('2')**Decimal('0.5')))))))
 
-def NormalCD_calculate(x: float, mean: float, sd: float) -> float:
-	return 0.5*(1+math.erf((x-mean)/(sd*(2**0.5))))
-
-def NormalCD(x: float, mean: float, sd: float) -> float:
-	NormalPD_validate(x, mean, sd)
-	return NormalCD_calculate(x, mean, sd)
+def NormalCD(x: Union[int, float], sd: Union[int, float], mu: Union[int, float]) -> float:
+	NormalPD_validate(x, sd, mu)
+	return float(NormalCD_calculate(
+		Decimal(str(x)),
+		Decimal(str(mu)),
+		Decimal(str(sd))
+	))
 
 
 # def InvNormalCD_validate(tail: object, area: object, sd:object, mean:object):
