@@ -5,36 +5,36 @@ import math
 PI = Decimal(str(math.pi))
 EULER = Decimal(str(math.e))
 
-def NormalPD_validate(x: Any, sd: Any, mu: Any) -> None:
+def NormalPD_validate(x: Any, mu: Any, sigma: Any) -> None:
 	if not isinstance(x, (int, float)):
 		raise TypeError("Input x value is invalid")
 	if not isinstance(mu, (int, float)):
 		raise TypeError("Input µ value is invalid")
-	if not isinstance(sd, (int, float)):
+	if not isinstance(sigma, (int, float)):
 		raise TypeError("Input σ value is invalid")
 
-def NormalPD_calculate(x: Decimal, sd: Decimal, mu: Decimal) -> Decimal:
-	lhs = (1/(sd*((PI*2)**(Decimal('0.5')))))
-	rhs = (1/(EULER)**(((x-mu)**2)/(2*sd**2)))
+def NormalPD_calculate(x: Decimal, mu: Decimal, sigma: Decimal) -> Decimal:
+	lhs = (1/(sigma*((PI*2)**(Decimal('0.5')))))
+	rhs = (1/(EULER)**(((x-mu)**2)/(2*sigma**2)))
 	return(lhs*rhs)
 
-def NormalPD(x: Union[int, float], sd: Union[int, float], mu: Union[int, float]) -> float:
-	NormalPD_validate(x, sd, mu)
+def NormalPD(x: Union[int, float], mu: Union[int, float], sigma: Union[int, float]) -> float:
+	NormalPD_validate(x, mu, sigma)
 	return float(NormalPD_calculate(
 		Decimal(str(x)),
-		Decimal(str(sd)),
-		Decimal(str(mu))
+		Decimal(str(mu)),
+		Decimal(str(sigma))
 	))
 
-def NormalCD_calculate(x: Decimal, mu: Decimal, sd: Decimal) -> Decimal:
-	return Decimal('0.5')*(1+Decimal(str(math.erf((x-mu)/(sd*(Decimal('2')**Decimal('0.5')))))))
+def NormalCD_calculate(x: Decimal, mu: Decimal, sigma: Decimal) -> Decimal:
+	return Decimal('0.5')*(1+Decimal(str(math.erf((x-mu)/(sigma*(Decimal('2')**Decimal('0.5')))))))
 
-def NormalCD(x: Union[int, float], sd: Union[int, float], mu: Union[int, float]) -> float:
-	NormalPD_validate(x, sd, mu)
+def NormalCD(x: Union[int, float], mu: Union[int, float], sigma: Union[int, float]) -> float:
+	NormalPD_validate(x, sigma, mu)
 	return float(NormalCD_calculate(
 		Decimal(str(x)),
 		Decimal(str(mu)),
-		Decimal(str(sd))
+		Decimal(str(sigma))
 	))
 
 
