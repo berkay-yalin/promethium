@@ -8,4 +8,4 @@ from .distributions_poisson import InvPoissonCD as InvP
 
 from .distributions_normal import NormalPD as Npd
 from .distributions_normal import NormalCD as Ncd
-# from .distributions_normal import InvNormalCD as InvN
+from .distributions_normal import InvNormalCD as InvN
