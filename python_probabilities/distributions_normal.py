@@ -10,7 +10,7 @@ def NormalPD_validate(x: Any, mu: Any, sigma: Any) -> None:
 		raise TypeError("Input x value is invalid")
 	if not isinstance(mu, (int, float)):
 		raise TypeError("Input µ value is invalid")
-	if not isinstance(sigma, (int, float)):
+	if not sigma or not isinstance(sigma, (int, float)):
 		raise TypeError("Input σ value is invalid")
 
 def NormalPD_calculate(x: Decimal, mu: Decimal, sigma: Decimal) -> Decimal:
@@ -44,7 +44,7 @@ def InvNormalCD_validate(p: Any, mu: Any, sigma: Any) -> None:
 		raise TypeError("Input p value must be a positive decimal precentage")
 	if not isinstance(mu, (int, float)):
 		raise TypeError("Input µ value is invalid")
-	if not isinstance(sigma, (int, float)):
+	if not sigma or not isinstance(sigma, (int, float)):
 		raise TypeError("Input σ value is invalid")
 
 from statistics import _normal_dist_inv_cdf # type:ignore
