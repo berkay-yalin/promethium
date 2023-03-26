@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "python-probabilities"
-version = "0.3.0"
+version = "0.3.1"
 description = "Library for accurate statistical calculations using Python."
 authors = ["berkay-yalin <66202981+berkay-yalin@users.noreply.github.com>"]
 readme = "README.md"
@@ -8,7 +8,6 @@ packages = [{include = "python_probabilities"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-
 
 [build-system]
 requires = ["poetry-core"]
