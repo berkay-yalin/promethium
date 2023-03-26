@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "python-probabilities"
-version = "0.2.0"
+version = "0.3.0"
 description = "Library for accurate statistical calculations using Python."
 authors = ["berkay-yalin <66202981+berkay-yalin@users.noreply.github.com>"]
 readme = "README.md"
