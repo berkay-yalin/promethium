@@ -10,6 +10,15 @@ geometricTestData = (
 				  'InvG': 0.7138929909
 			}
 	  }
+
+	  {
+			'values': (50, 0.0567, 0.08),
+			'expected': {
+				  'Gpd': 0.06033143,
+				  'Gcd': 0.81256374,
+				  'InvG': 0.7138929909
+			}
+	  }
 )
 
 
@@ -42,4 +51,3 @@ def GeometricTesting(function: str, testdata: Any):
 				  print(f"fail! \n   {observed}\n!= {expected}")
 
 	  print('### TESTING COMPLETE ###')
-
