@@ -16,8 +16,8 @@ def GeometricPD_calculate(x: int, p: Decimal) -> Decimal:
 
 
 def GeometricCD(x: int, p: float) -> Decimal:
-	GeometricPD_validate(xInput, pInput)
-	return GeometricCD_calculate(xInput, pInput)
+	GeometricPD_validate(x, p)
+	return GeometricCD_calculate(x, Decimal(str(p)))
 
 def GeometricCD_calculate(x: int, p: Decimal) -> Decimal:
 	return 1 - (1 - p) ** x
