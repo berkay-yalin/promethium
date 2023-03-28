@@ -1,5 +1,4 @@
 from decimal import Decimal
-import math
 
 def GeometricPD(x: int, p: float) -> Decimal:
 	GeometricPD_validate(x, p)
