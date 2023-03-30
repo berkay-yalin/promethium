@@ -1,51 +1,50 @@
 from typing import Any, Union
-from fractions import Fraction
-import math
+from decimal import Decimal
+from math import factorial
 
 
-def PoissonPD_validate(k: Any, mu: Any) -> None:
+def PoissonPD_validate(k: Any, lambda_: Any) -> None:
 	if not isinstance(k, int):
-		raise TypeError("k value must be an integer")
-	if not isinstance(mu, (int, float)):
+		raise TypeError("k value lambda_st be an integer")
+	if not isinstance(lambda_, (int, float)):
 		raise TypeError("λ data type unsupported")
-	if mu < 0:
+	if lambda_ <= 0:
 		raise ValueError("λ value out of domain")
 
-def PoissonPD_calculate(k: int, mu: Fraction) -> float:
-	return ((mu ** k) / math.factorial(k)) * (math.e ** -mu)
+def PoissonPD_calculate(k: int, lambda_: Decimal) -> Decimal:
+	return (lambda_ ** k) / ( factorial(k) * lambda_.exp() )
 
-def PoissonPD(k: int, mu: Union[int, float]) -> float:
-	PoissonPD_validate(k, mu)
-	return PoissonPD_calculate(k, Fraction(str(mu)))
-
-
-def PoissonCD_calculate(k: int, mu: Fraction) -> float:
-	return sum([PoissonPD_calculate(i, mu) for i in range(k + 1)])
-
-def PoissonCD(k: int, mu: Union[int, float]) -> float:
-	PoissonPD_validate(k, mu)
-	return PoissonCD_calculate(k, Fraction(str(mu)))
+def PoissonPD(k: int, lambda_: Union[int, float]) -> float:
+	PoissonPD_validate(k, lambda_)
+	return float(PoissonPD_calculate(k, Decimal(str(lambda_))))
 
 
-def InvPoissonCD_validate(area: Any, mu: Any) -> None:
+def PoissonCD_calculate(k: int, lambda_: Decimal) -> Decimal:
+	return sum(PoissonPD_calculate(i, lambda_) for i in range(k + 1))
+
+def PoissonCD(k: int, lambda_: Union[int, float]) -> float:
+	PoissonPD_validate(k, lambda_)
+	return float(PoissonCD_calculate(k, Decimal(str(lambda_))))
+
+
+def InvPoissonCD_validate(area: Any, lambda_: Any) -> None:
 	if not isinstance(area, (int, float)):
 		raise TypeError("area data type unsupported")
-	if not isinstance(mu, (int, float)):
+	if area < 0:
+		raise ValueError("area value out of domain")
+	if not isinstance(lambda_, (int, float)):
 		raise TypeError("λ data type unsupported")
-	if not 0 <= mu <= 1:
+	if lambda_ <= 0:
 		raise ValueError("λ value out of domain")
 
-def InvPoissonCD_calculate(area: Fraction, mu: Fraction) -> int:
-	cumulative = 0
-	ppd = 0
-	i = 0
-	while cumulative <= area:
-		ppd = PoissonPD_calculate(i, mu)
-		cumulative += ppd
-		i += 1
+def InvPoissonCD_calculate(area: Decimal, lambda_: Decimal) -> int:
+	tempK: int = 0
+	while True:
+		if PoissonCD_calculate(tempK, lambda_) >= area:
+			break
+		tempK += 1
+	return tempK
 
-	return i - 1
-
-def InvPoissonCD(area: Union[int, float], mu: Union[int, float]) -> int:
-	InvPoissonCD_validate(area, mu)
-	return InvPoissonCD_calculate(Fraction(str(area)), Fraction(str(mu)))
+def InvPoissonCD(area: Union[int, float], lambda_: Union[int, float]) -> int:
+	InvPoissonCD_validate(area, lambda_)
+	return InvPoissonCD_calculate(Decimal(str(area)), Decimal(str(lambda_)))
