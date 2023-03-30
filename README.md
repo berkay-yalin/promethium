@@ -6,9 +6,9 @@
   - [Cumulative distribution function](#cumulative-distribution-function)
   - [Inverse cumulative distribution function](#inverse-cumulative-distribution-function)
 - [Poisson Distributions](#poisson-distributions)
-  - [Poisson Probability Distribution](#poisson-probability-distribution)
-  - [Poisson Cumulative Distribution](#poisson-cumulative-distribution)
-  - [Inverse Poisson Cumulative Distribution](#inverse-poisson-cumulative-distribution)
+  - [Probability mass function](#probability-mass-function-1)
+  - [Cumulative distribution function](#cumulative-distribution-function-1)
+  - [Inverse cumulative distribution](#inverse-cumulative-distribution)
 
 ## Binomial Distributions
 ### Probability mass function
@@ -43,7 +43,7 @@ To calculate `P(X≤7)` for the binomial distribution `X~B(11, 0.33)`:
 ---
 ### Inverse cumulative distribution function
 ```python
-InvBinomial(q, n, p)
+InvBinomialCD(q, n, p)
 ```
 For the random variable `X` with the binomial distribution `B(n, p)`, calculate the **inverse** for the **cumulative distribution function**.\
 Where `q` is the cumulative probability, `n` is the number of trials, and `p` is the probability of success.
@@ -61,41 +61,51 @@ To calculate the corresponding value for `r` (the number of successes) given the
 ```
 
 ## Poisson Distributions
-### Poisson Probability Distribution
-If a random variable `X` has the poisson distribution `Po(λ)`, then its **probability mass function** can be calculated via `Ppd(k, λ)`.\
-*(where `k` is the number of occurrences and `λ` is the expected number of occurrences)*
-
-The code below would be to calculate `P(X=3)` for the binomial distribution `X~Po(6)`.
-
+### Probability mass function
 ```python
->>> from python_probabilities import Ppd
->>> Ppd(3, 6)
-0.08923507835998894
+PoissonPD(r, m)
 ```
+For the random variable `X` with the poisson distribution `Po(m)`, calculate the **probability mass function**.\
+Where `r` is the number of occurrences, and `m` is the mean rate of occurrence.
 
-### Poisson Cumulative Distribution
-For the binomial distribution `X~Po(λ)`, the **cumulative probability function** can be calculated via `Pcd(k, λ)`.\
-*(where `k` is the number of occurrences and `λ` is the expected number of occurrences)*
-
-The code below would be to calculate `P(X≤3)` for the binomial distribution `X~Po(6)`.
-
+**Example**\
+To calculate `P(X=7)` for the poisson distribution `X~Po(11.556)`:
 ```python
->>> from python_probabilities import Pcd
->>> Pcd(3, 6)
-0.15120388277664792
+>>> from python_probabilities import PoissonPD
+>>> PoissonPD(11, 23.445)
+0.0019380401123575617
 ```
-
-*"A cumulative probability function for a random variable X tells you the sum of all the individual
-probabilities up to and including the given value of x in the calculation for P(X < x)".*
-
-### Inverse Poisson Cumulative Distribution
-Given the probability for a cumulative probability function, the value for `k` (number of occurrences) can be calculated via `InvP(x, λ)`.\
-*(where `x` is the probability and `λ` is the expected number of occurrences)*
-
+---
+### Cumulative distribution function
 ```python
->>> from python_probabilities import *
->>> InvP(0.4, 8)
-7
->>> Pcd(7, 8)
-0.4529608094869947
+PoissonCD(r, m)
+```
+For the random variable `X` with the poisson distribution `Po(m)`, calculate the **cumulative distribution function**.\
+Where `r` is the number of occurrences, and `m` is the mean rate of occurrence.
+
+**Example**\
+To calculate `P(X≤7)` for the poisson distribution `X~Po(11.556)`:
+```python
+>>> from python_probabilities import PoissonCD
+>>> PoissonCD(11, 23.445)
+0.0034549033698374467
+```
+---
+### Inverse cumulative distribution
+```python
+InvPoissonCD(q, m)
+```
+For the random variable `X` with the poisson distribution `Po(m)`, calculate the **inverse** for the **cumulative distribution function**.\
+Where `q` is the cumulative probability, and `m` is the mean rate of occurrence.
+
+`InvPoissonCD(q, m)` returns the smallest integer `x` such that `PoissonCD(x, m)` is greater than or equal to `q`.
+
+**Example**\
+To calculate the corresponding value for `r` (number of occurrences) given the values for `q` (cumulative probability):
+```python
+>>> from python_probabilities import PoissonCD, InvPoissonCD
+>>> InvPoissonCD(0.0034549033698374467, 23.445)
+11
+>>> PoissonCD(11, 23.445)
+0.0034549033698374467
 ```
