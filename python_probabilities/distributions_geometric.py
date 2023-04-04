@@ -1,17 +1,22 @@
+from typing import Any, Union
 from decimal import Decimal
 
-def GeometricPD(x: int, p: float) -> Decimal:
+def GeometricPD(x: int, p: Union[int, float]) -> Decimal:
     GeometricPD_validate(x, p)
     return GeometricPD_calculate(x, Decimal(str(p)))
 
-def GeometricPD_validate(x: object, p: object) -> None:
-    if not isinstance(x, int) or x < 0:
-        raise TypeError("Input value x must be positive integer")
-    if not isinstance(p, float) or not 0 <= p <= 1:
-        raise TypeError("Input value p must be a float between 0 and 1")
+def GeometricPD_validate(x: Any, p: Any) -> None:
+    if not isinstance(x, int):
+        raise TypeError("x value must be a non-negative integer")
+    if x < 0:
+        raise ValueError("x value out of domain")
+    if not isinstance(p, float):
+        raise TypeError("p value must be non-negative float")
+    if not 0 <= p <= 1:
+        raise ValueError("p value out of domain")
 
 def GeometricPD_calculate(x: int, p: Decimal) -> Decimal:
-    return ((1-p) ** (x-1)) * p
+    return ((1 - p) ** (x - 1)) * p
 
 
 def GeometricCD(x: int, p: float) -> Decimal:
@@ -24,15 +29,22 @@ def GeometricCD_calculate(x: int, p: Decimal) -> Decimal:
 
 def InvGeometricCD(area: float, p: float) -> int:
     InvGeometricCD_validate(area, p)
-    return InvGeometricCD_calculate(area, p)
+    return InvGeometricCD_calculate(
+        Decimal(str(area)),
+        Decimal(str(p))
+    )
 
-def InvGeometricCD_validate(area: object, p: object) -> None:
-    if not isinstance(area, float) or area < 0 or area > 1:
-        raise TypeError("Input value area must be a positive decimal precentage")
-    if not isinstance(p, float) or not 0 <= p <= 1:
-        raise TypeError("Input value p must be a float between 0 and 1")
+def InvGeometricCD_validate(area: Any, p: Any) -> None:
+    if not isinstance(area, float):
+        raise TypeError("area value must be non-negative float")
+    if not 0 <= area <= 1:
+        raise ValueError("area value out of domain")
+    if not isinstance(p, float):
+        raise TypeError("p value must be non-negative float")
+    if not 0 <= p <= 1:
+        raise ValueError("p value out of domain")
 
-def InvGeometricCD_calculate(area: float, p: float) -> int:
+def InvGeometricCD_calculate(area: Decimal, p: Decimal) -> int:
     cumulative = 0
     i = 1
     while cumulative <= area:
