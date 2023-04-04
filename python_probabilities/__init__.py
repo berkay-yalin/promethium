@@ -4,16 +4,16 @@ from .distributions_normal import NormalPD, NormalCD, InvNormalCD
 from .distributions_geometric import GeometricPD, GeometricCD, InvGeometricCD
 
 __all__ = (
-	'BinomialPD',
-	'BinomialCD',
-	'InvBinomialCD',
-	'PoissonPD',
-	'PoissonCD',
-	'InvPoissonCD',
-	'NormalPD',
-	'NormalCD',
-	'InvNormalCD',
-	'GeometricPD',
-	'GeometricCD',
-	'InvGeometricCD'
+    'BinomialPD',
+    'BinomialCD',
+    'InvBinomialCD',
+    'PoissonPD',
+    'PoissonCD',
+    'InvPoissonCD',
+    'NormalPD',
+    'NormalCD',
+    'InvNormalCD',
+    'GeometricPD',
+    'GeometricCD',
+    'InvGeometricCD'
 )

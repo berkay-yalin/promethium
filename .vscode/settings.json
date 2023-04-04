@@ -1,4 +1,8 @@
 {
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+
     "python.defaultInterpreterPath": ".venv/bin/python",
     "python.languageServer": "Jedi",
     "python.analysis.diagnosticMode": "workspace",
