@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "ms-python.python",
+        "ms-pyright.pyright",
+        "bungcip.better-toml",
+        "bierner.markdown-preview-github-styles",
+    ]
+}
