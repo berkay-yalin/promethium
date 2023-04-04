@@ -45,10 +45,10 @@ def InvGeometricCD_validate(area: Any, p: Any) -> None:
         raise ValueError("p value out of domain")
 
 def InvGeometricCD_calculate(area: Decimal, p: Decimal) -> int:
-    cumulative = 0
+    cumulative = Decimal()
     i = 1
     while cumulative <= area:
-        cumulative += GeometricPD(i, p)
+        cumulative += GeometricPD_calculate(i, p)
         i += 1
     return i - 1
 
