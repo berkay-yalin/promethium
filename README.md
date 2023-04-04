@@ -5,9 +5,13 @@
   - [Probability mass function](#probability-mass-function)
   - [Cumulative distribution function](#cumulative-distribution-function)
   - [Inverse cumulative distribution function](#inverse-cumulative-distribution-function)
+- [Normal Distributions](#normal-distributions)
+  - [Probability density function](#probability-density-function)
+  - [Cumulative distribution function](#cumulative-distribution-function-1)
+  - [Inverse cumulative distribution function](#inverse-cumulative-distribution-function-1)
 - [Poisson Distributions](#poisson-distributions)
   - [Probability mass function](#probability-mass-function-1)
-  - [Cumulative distribution function](#cumulative-distribution-function-1)
+  - [Cumulative distribution function](#cumulative-distribution-function-2)
   - [Inverse cumulative distribution](#inverse-cumulative-distribution)
 
 ## Binomial Distributions
@@ -58,6 +62,52 @@ To calculate the corresponding value for `r` (the number of successes) given the
 7
 >>> BinomialCD(7, 11, 0.333)
 0.9912362670526581
+```
+
+## Normal Distributions
+### Probability density function
+```python
+NormalPD(x, µ, σ)
+```
+Probability density function for the normal distribution `X~N(µ, σ)`.\
+Where `µ` is the mean, and `σ` is the standard deviation.
+
+---
+
+### Cumulative distribution function
+```python
+NormalCD(x, µ, σ)
+```
+Cumulative distribution function for the normal distribution `X~N(µ, σ)`.\
+Where `µ` is the mean, and `σ` is the standard deviation.
+
+**Example**\
+To calculate `P(X≤0.891)` for the normal distribution `X~N(0.734, 0.114)`:
+```python
+>>> from python_probabilities import NormalCD
+>>> NormalCD(0.891, 0.734, 0.114)
+0.9157737045522477
+```
+
+---
+
+### Inverse cumulative distribution function
+```python
+InvNormalCD(y, µ, σ)
+```
+Inverse cumulative distribution function for the normal distribution `X~N(µ, σ)`.\
+Where `µ` is the mean, and `σ` is the standard deviation.
+
+`InvNormalCD(y, µ, σ)` returns the smallest integer `x` such that `NormalCD(x, µ, σ)` is greater than or equal to `y`.
+
+**Example**\
+To calculate the corresponding value for `x` given the value for `y`:
+```python
+>>> from python_probabilities import NormalCD, InvNormalCD
+>>> InvNormalCD(0.9157737045522477, 0.734, 0.114)
+0.891
+>>> NormalCD(0.891, 0.734, 0.114)
+0.9157737045522477
 ```
 
 ## Poisson Distributions
