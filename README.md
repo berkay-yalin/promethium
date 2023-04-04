@@ -13,6 +13,10 @@
   - [Probability mass function](#probability-mass-function-1)
   - [Cumulative distribution function](#cumulative-distribution-function-2)
   - [Inverse cumulative distribution](#inverse-cumulative-distribution)
+- [Geometric Distributions](#geometric-distributions)
+  - [Probability mass function](#probability-mass-function-2)
+  - [Cumulative distribution function](#cumulative-distribution-function-3)
+  - [Inverse cumulative distribution function](#inverse-cumulative-distribution-function-2)
 
 ## Binomial Distributions
 ### Probability mass function
@@ -159,3 +163,56 @@ To calculate the corresponding value for `r` (number of occurrences) given the v
 >>> PoissonCD(11, 23.445)
 0.0034549033698374467
 ```
+
+## Geometric Distributions
+### Probability mass function
+```python
+GeometricPD(x, p)
+```
+Probability mass function for the geometric distribution `X~G(p)`.\
+Where `x` is the number of trials before the first success, and `p` is the probability of success.
+
+**Example**\
+To calculate `P(X=3)` for the geometric distribution `X~G(0.491)`:
+```python
+>>> from python_probabilities import GeometricPD
+>>> GeometricPD(3, 0.491)
+0.127208771
+```
+---
+
+### Cumulative distribution function
+```python
+GeometricCD(x, p)
+```
+Cumulative distribution function for the geometric distribution `X~G(p)`.\
+Where `x` is the number of trials before the first success, and `p` is the probability of success.
+
+**Example**\
+To calculate `P(X≤3)` for the geometric distribution `X~G(0.491)`:
+```python
+>>> from python_probabilities import GeometricCD
+>>> GeometricCD(3, 0.491)
+0.868127771
+```
+---
+
+### Inverse cumulative distribution function
+```python
+InvGeometricCD(area, p)
+```
+Inverse cumulative distribution function for the geometric distribution `X~G(p)`.\
+Where `x` is the number of trials before the first success, and `p` is the probability of success.
+
+`InvGeometricCD(area, p)` returns the smallest integer `x` such that `GeometricCD(x, p)` is greater than or equal to `area`.
+
+**Example**\
+To calculate the corresponding value for `x` given the value for `area`:
+```python
+>>> from python_probabilities import GeometricCD, InvGeometricCD
+>>> InvGeometricCD(0.868, 0.491)
+3
+>> GeometricCD(3, 0.491)
+0.868127771
+```
+
