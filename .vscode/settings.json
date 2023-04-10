@@ -1,0 +1,16 @@
+{
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+
+    "python.defaultInterpreterPath": ".venv/bin/python",
+    "python.languageServer": "Jedi",
+    "python.analysis.diagnosticMode": "workspace",
+
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintArgs": [
+        "--disable=C0103", // invalid-name
+        "--disable=C0114", // missing-module-docstring
+        "--disable=C0116", // missing-function-docstring
+    ],
+}
