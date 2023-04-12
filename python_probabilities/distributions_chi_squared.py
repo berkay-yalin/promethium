@@ -14,6 +14,8 @@ def ChiSquaredPD_validate(x: Any, df: Any) -> None:
         raise TypeError("Input x value is invalid")
     if not isinstance(df, int):
         raise TypeError("Input df value is invalid")
+    if df <= 0:
+        raise ValueError("df value out of domain")
 
 def ChiSquaredPD_calculate(x: Decimal, df: Decimal) -> Decimal:
     df_half = df * HALF
@@ -22,7 +24,7 @@ def ChiSquaredPD_calculate(x: Decimal, df: Decimal) -> Decimal:
         / ( TWO ** df_half * Decimal(f"{gamma(df_half)}") )
     )
 
-def ChiSquaredPD(x: Union[int, float], df: Union[int, float]) -> Decimal:
+def ChiSquaredPD(x: Union[int, float], df: int) -> Decimal:
     ChiSquaredPD_validate(x, df)
     return ChiSquaredPD_calculate(
         Decimal(str(x)),
