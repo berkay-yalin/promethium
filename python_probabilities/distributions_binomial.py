@@ -25,8 +25,7 @@ def BinomialPD(x: int, n: int, p: float) -> Decimal:
 
 
 def BinomialCD_calculate(k: int, n: int, p: Decimal) -> Decimal:
-    # hello: str = 'hello'.
-    return sum((BinomialPD_calculate(i, n, p) for i in range(k + 1)))
+    return sum((BinomialPD_calculate(i, n, p) for i in range(k + 1)), Decimal())
 
 def BinomialCD(x: int, n: int, p: float) -> Decimal:
     BinomialPD_validate(x, n, p)
