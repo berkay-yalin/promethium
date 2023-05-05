@@ -20,7 +20,7 @@ def PoissonPD(k: int, lambda_: Union[int, float]) -> float:
 
 
 def PoissonCD_calculate(k: int, lambda_: Decimal) -> Decimal:
-    return sum(PoissonPD_calculate(i, lambda_) for i in range(k + 1))
+    return sum((PoissonPD_calculate(i, lambda_) for i in range(k + 1)), Decimal())
 
 def PoissonCD(k: int, lambda_: Union[int, float]) -> float:
     PoissonPD_validate(k, lambda_)
