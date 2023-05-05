@@ -33,19 +33,3 @@ def ChiSquaredCD(x: Union[int, float], df: int) -> float:
     ChiSquaredPD_validate(x, df)
     return gammainc(x * 0.5, df * 0.5)
 
-# def InvChiSquaredCD_validate(area: Any, df: Any) -> None:
-#     if not isinstance(area, float) or not 0 <= area <= 1:
-#         raise TypeError("Input area must be a float between 0 and 1")
-#     if not isinstance(df, int):
-#         raise TypeError("Input df value must be a positive integer")
-#
-# def InvChiSquaredCD_calculate(area: float, df: int):
-#     return stats.chi2.isf(area,df)
-#
-# def InvChiSquaredCD(area: Union[int, float], df: Union[int, float]) -> float:
-#     InvChiSquaredCD_validate(area, df)
-#     return InvChiSquaredCD_calculate(
-#         float(area),
-#         float(df),
-#     )
-
