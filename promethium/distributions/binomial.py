@@ -2,7 +2,8 @@ from typing import Any
 from decimal import Decimal
 from math import comb
 
-def BinomialPD_validate(x: Any, n: Any, p: Any) -> None:
+
+def pmf_validate(x: Any, n: Any, p: Any) -> None:
     if not isinstance(x, int):
         raise TypeError("x must be a non-negative integer")
     if x < 0:
@@ -16,23 +17,23 @@ def BinomialPD_validate(x: Any, n: Any, p: Any) -> None:
     if not 0 <= p <= 1:
         raise ValueError("p value out of domain")
 
-def BinomialPD_calculate(x: int, n: int, p: Decimal) -> Decimal:
+def pmf_calculate(x: int, n: int, p: Decimal) -> Decimal:
     return comb(n, x) * (p ** x) * ((1 - p) ** (n - x))
 
-def BinomialPD(x: int, n: int, p: float) -> Decimal:
-    BinomialPD_validate(x, n, p)
-    return BinomialPD_calculate(x, n, Decimal(str(p)))
+def pmf(x: int, n: int, p: float) -> Decimal:
+    pmf_validate(x, n, p)
+    return pmf_calculate(x, n, Decimal(str(p)))
 
 
-def BinomialCD_calculate(k: int, n: int, p: Decimal) -> Decimal:
-    return sum((BinomialPD_calculate(i, n, p) for i in range(k + 1)), Decimal())
+def cdf_calculate(k: int, n: int, p: Decimal) -> Decimal:
+    return sum((pmf_calculate(i, n, p) for i in range(k + 1)), Decimal())
 
-def BinomialCD(x: int, n: int, p: float) -> Decimal:
-    BinomialPD_validate(x, n, p)
-    return BinomialCD_calculate(x, n, Decimal(str(p)))
+def cdf(x: int, n: int, p: float) -> Decimal:
+    pmf_validate(x, n, p)
+    return cdf_calculate(x, n, Decimal(str(p)))
 
 
-def InvBinomialCD_validate(y: Any, n: Any, p: Any) -> None:
+def ppf_validate(y: Any, n: Any, p: Any) -> None:
     if not isinstance(y, float):
         raise TypeError("y must be non-negative float")
     if not 0 <= y <= 1:
@@ -46,16 +47,20 @@ def InvBinomialCD_validate(y: Any, n: Any, p: Any) -> None:
     if not 0 <= p <= 1:
         raise ValueError("p value out of domain")
 
-def InvBinomialCD_calculate(x: Decimal, n: int, p: Decimal) -> int:
+def ppf_calculate(x: Decimal, n: int, p: Decimal) -> int:
     for i in range(n + 1):
         tempN = i - 1
-        tempX = BinomialCD_calculate(tempN, n, p)
+        tempX = cdf_calculate(tempN, n, p)
         if tempX == x:
             return i
         if tempX > x:
             return tempN
 
-def InvBinomialCD(y: float, n: int, p: float) -> int:
-    InvBinomialCD_validate(y, n, p)
-    return InvBinomialCD_calculate(Decimal(str(y)), n, Decimal(str(p)))
+
+def ppf(y: float, n: int, p: float) -> int:
+    ppf_validate(y, n, p)
+    return ppf_calculate(Decimal(str(y)), n, Decimal(str(p)))
+
+
+__all__ = ['pmf', 'cdf', 'ppf']
 

@@ -1,7 +1,9 @@
 """
 Reimplementation of the stdlib gammainc function in Python.
+
 JavaScript implementation from the stdlib library:
     https://github.com/stdlib-js/math-base-special-gammainc/blob/dfe83f6926e872018d5276f0b801b15fc24614a6/lib/main.js
+
 Original C++ code from Boost library:
     https://www.boost.org/doc/libs/1_62_0/boost/math/special_functions/gamma.hpp
 

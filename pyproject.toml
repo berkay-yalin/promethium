@@ -1,23 +1,62 @@
 [tool.poetry]
-name = "python-probabilities"
-version = "0.5.0"
-description = "Library for accurate statistical calculations using Python."
-authors = ["berkay-yalin <66202981+berkay-yalin@users.noreply.github.com>"]
+name = "promethium"
+version = "0.6.0"
+description = "Library for calculating statistical distributions, written in pure Python with zero dependencies."
+license = "GPL-3.0-only"
 readme = "README.md"
-packages = [{include = "python_probabilities"}]
+authors = [
+    "berkay-yalin <66202981+berkay-yalin@users.noreply.github.com>"
+]
+packages = [
+    {include = "promethium"}
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Natural Language :: English",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: OS Independent",
+    "Operating System :: POSIX",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: Unix",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Topic :: Education",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed"
+]
 
-[tool.poetry.dependencies]
-python = "^3.9"
-
-[tool.poetry.group.dev.dependencies]
-pylint = "^2.17.2"
-pyright = "^1.1.301"
+[tool.poetry.urls]
+Repository = "https://github.com/berkay-yalin/promethium"
+Documentation = "https://github.com/berkay-yalin/promethium#readme"
+Issues = "https://github.com/berkay-yalin/promethium/issues"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
+[tool.poetry.dependencies]
+python = ">=3.9"
+
+[tool.poetry.group.dev.dependencies]
+pylint = "^2.17.2"
+pyright = "^1.1.301"
+
 [tool.pyright]
 pythonVersion = "3.9"
 pythonPlatform = "Linux"
 typeCheckingMode = "strict"
+
