@@ -1,23 +1,27 @@
 # Promethium 🐍
 *Functions for calculating statistical distributions, written in pure Python with zero dependencies.*
 
-# Contents
 - [Binomial Distribution](#binomial-distribution)
-  - [Probability mass function](#probability-mass-function)
-  - [Cumulative distribution function](#cumulative-distribution-function)
-  - [Inverse cumulative distribution function](#inverse-cumulative-distribution-function)
+  * [Probability mass function](#probability-mass-function)
+  * [Cumulative distribution function](#cumulative-distribution-function)
+  * [Inverse cumulative distribution function](#inverse-cumulative-distribution-function)
+- [Chi-Squared Distribution](#chi-squared-distribution)
+  * [Probability density function](#probability-density-function)
+  * [Cumulative distribution function](#cumulative-distribution-function-1)
 - [Normal Distribution](#normal-distribution)
-  - [Probability density function](#probability-density-function)
-  - [Cumulative distribution function](#cumulative-distribution-function-1)
-  - [Inverse cumulative distribution function](#inverse-cumulative-distribution-function-1)
+  * [Probability density function](#probability-density-function-1)
+  * [Cumulative distribution function](#cumulative-distribution-function-2)
+  * [Inverse cumulative distribution function](#inverse-cumulative-distribution-function-1)
 - [Poisson Distribution](#poisson-distribution)
-  - [Probability mass function](#probability-mass-function-1)
-  - [Cumulative distribution function](#cumulative-distribution-function-2)
-  - [Inverse cumulative distribution](#inverse-cumulative-distribution)
+  * [Probability mass function](#probability-mass-function-1)
+  * [Cumulative distribution function](#cumulative-distribution-function-3)
+  * [Inverse cumulative distribution](#inverse-cumulative-distribution)
 - [Geometric Distribution](#geometric-distribution)
-  - [Probability mass function](#probability-mass-function-2)
-  - [Cumulative distribution function](#cumulative-distribution-function-3)
-  - [Inverse cumulative distribution function](#inverse-cumulative-distribution-function-2)
+  * [Probability mass function](#probability-mass-function-2)
+  * [Cumulative distribution function](#cumulative-distribution-function-4)
+  * [Inverse cumulative distribution function](#inverse-cumulative-distribution-function-2)
+
+---
 
 ## Binomial Distribution
 ### Probability mass function
@@ -34,7 +38,7 @@ To calculate `P(X=7)` for the binomial distribution `X~B(11, 0.33)`:
 >>> binomial.pmf(7, 11, 0.33)
 0.029656979029412885
 ```
----
+
 ### Cumulative distribution function
 ```python
 binomial.cdf(r, n, p)
@@ -49,7 +53,7 @@ To calculate `P(X≤7)` for the binomial distribution `X~B(11, 0.33)`:
 >>> binomial.cdf(7, 11, 0.33)
 0.9912362670526581
 ```
----
+
 ### Inverse cumulative distribution function
 ```python
 binomial.ppf(q, n, p)
@@ -69,6 +73,33 @@ To calculate the corresponding value for `r` (the number of successes) given the
 0.9912362670526581
 ```
 
+---
+
+## Chi-Squared Distribution
+### Probability density function
+```python
+chi2.pdf(x, df)
+```
+Probability density function for the chi-squared distribution `X~X²(df)`,
+where `df` is the degrees of the freedom.
+
+### Cumulative distribution function
+```python
+chi2.cdf(x, df)
+```
+Cumulative distribution function for the chi-squared distribution `X~X²(df)`,
+where `df` is the degrees of the freedom.
+
+**Example**\
+To calculate `P(0≤X≤0.556)` for the chi-squared distribution `X~X²(3)`:
+```python
+>>> from promethium import chi2
+>>> chi2.cdf(0.556, 3)
+0.09357297231516998
+```
+
+---
+
 ## Normal Distribution
 ### Probability density function
 ```python
@@ -76,8 +107,6 @@ normal.pdf(x, µ, σ)
 ```
 Probability density function for the normal distribution `X~N(µ, σ)`.\
 Where `µ` is the mean, and `σ` is the standard deviation.
-
----
 
 ### Cumulative distribution function
 ```python
@@ -93,8 +122,6 @@ To calculate `P(X≤0.891)` for the normal distribution `X~N(0.734, 0.114)`:
 >>> normal.cdf(0.891, 0.734, 0.114)
 0.9157737045522477
 ```
-
----
 
 ### Inverse cumulative distribution function
 ```python
@@ -115,6 +142,8 @@ To calculate the corresponding value for `x` given the value for `y`:
 0.9157737045522477
 ```
 
+---
+
 ## Poisson Distribution
 ### Probability mass function
 ```python
@@ -130,7 +159,7 @@ To calculate `P(X=7)` for the poisson distribution `X~Po(11.556)`:
 >>> poisson(11, 23.445)
 0.0019380401123575617
 ```
----
+
 ### Cumulative distribution function
 ```python
 poisson.cdf(r, m)
@@ -145,7 +174,7 @@ To calculate `P(X≤7)` for the poisson distribution `X~Po(11.556)`:
 >>> poisson.cdf(11, 23.445)
 0.0034549033698374467
 ```
----
+
 ### Inverse cumulative distribution
 ```python
 poisson.ppf(q, m)
@@ -165,6 +194,8 @@ To calculate the corresponding value for `r` (number of occurrences) given the v
 0.0034549033698374467
 ```
 
+---
+
 ## Geometric Distribution
 ### Probability mass function
 ```python
@@ -180,7 +211,6 @@ To calculate `P(X=3)` for the geometric distribution `X~G(0.491)`:
 >>> geometric.pmf(3, 0.491)
 0.127208771
 ```
----
 
 ### Cumulative distribution function
 ```python
@@ -196,7 +226,6 @@ To calculate `P(X≤3)` for the geometric distribution `X~G(0.491)`:
 >>> geometric.cdf(3, 0.491)
 0.868127771
 ```
----
 
 ### Inverse cumulative distribution function
 ```python
