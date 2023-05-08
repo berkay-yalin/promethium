@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "promethium"
-version = "0.6.0"
+version = "0.6.1"
 description = "Library for calculating statistical distributions, written in pure Python with zero dependencies."
 license = "GPL-3.0-only"
 readme = "README.md"

@@ -48,13 +48,13 @@ def ppf_validate(y: Any, n: Any, p: Any) -> None:
         raise ValueError("p value out of domain")
 
 def ppf_calculate(x: Decimal, n: int, p: Decimal) -> int:
+    tempN = -1
     for i in range(n + 1):
-        tempN = i - 1
         tempX = cdf_calculate(tempN, n, p)
-        if tempX == x:
-            return i
-        if tempX > x:
+        if tempX >= x:
             return tempN
+        tempN = i
+    return n
 
 
 def ppf(y: float, n: int, p: float) -> int:
