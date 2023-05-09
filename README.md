@@ -1,5 +1,8 @@
 # Promethium 🐍
-*Functions for calculating statistical distributions, written in pure Python with zero dependencies.*
+[![PyPI - Version](https://img.shields.io/pypi/v/promethium.svg)](https://pypi.org/project/promethium)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/promethium.svg)](https://pypi.org/project/promethium)
+
+*Library for calculating statistical distributions, written in pure Python with zero dependencies.*
 
 - [Binomial Distribution](#binomial-distribution)
   * [Probability mass function](#probability-mass-function)
