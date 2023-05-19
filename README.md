@@ -4,6 +4,14 @@
 
 *Library for calculating statistical distributions, written in pure Python with zero dependencies.*
 
+**Contribution**: [CONTRIBUTING.md](https://github.com/berkay-yalin/promethium/blob/main/CONTRIBUTING.md)
+
+**Documentation**: [README.md](#documentation)
+
+---
+
+## Documentation
+
 - [Binomial Distribution](#binomial-distribution)
   * [Probability mass function](#probability-mass-function)
   * [Cumulative distribution function](#cumulative-distribution-function)
