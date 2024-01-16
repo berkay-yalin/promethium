@@ -1,62 +1,81 @@
-[tool.poetry]
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
 name = "promethium"
-version = "0.6.1"
+dynamic = ["version"]
 description = "Library for calculating statistical distributions, written in pure Python with zero dependencies."
-license = "GPL-3.0-only"
 readme = "README.md"
+requires-python = ">=3.9"
+license = "GPL-3.0-only"
+keywords = []
 authors = [
-    "berkay-yalin <66202981+berkay-yalin@users.noreply.github.com>"
-]
-packages = [
-    {include = "promethium"}
+    { name = "berkay", email = "66202981+berkay-yalin@users.noreply.github.com" },
 ]
 classifiers = [
-    "Development Status :: 3 - Alpha",
-    "Intended Audience :: Developers",
-    "Intended Audience :: Education",
-    "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
-    "Natural Language :: English",
-    "Operating System :: MacOS",
-    "Operating System :: Microsoft",
-    "Operating System :: Microsoft :: Windows",
-    "Operating System :: OS Independent",
-    "Operating System :: POSIX",
-    "Operating System :: POSIX :: Linux",
-    "Operating System :: Unix",
+    "Development Status :: 4 - Beta",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: Implementation :: CPython",
     "Programming Language :: Python :: Implementation :: PyPy",
-    "Topic :: Education",
-    "Topic :: Scientific/Engineering",
-    "Topic :: Scientific/Engineering :: Mathematics",
-    "Topic :: Software Development",
-    "Topic :: Software Development :: Libraries",
-    "Topic :: Software Development :: Libraries :: Python Modules",
-    "Typing :: Typed"
+    "Typing :: Typed",
 ]
+dependencies = []
 
-[tool.poetry.urls]
-Repository = "https://github.com/berkay-yalin/promethium"
+[project.urls]
 Documentation = "https://github.com/berkay-yalin/promethium#readme"
 Issues = "https://github.com/berkay-yalin/promethium/issues"
+Source = "https://github.com/berkay-yalin/promethium"
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[tool.hatch.version]
+path = "src/promethium/__about__.py"
 
-[tool.poetry.dependencies]
-python = ">=3.9"
+[tool.hatch.envs.default]
+dependencies = [
+  "coverage[toml]>=6.5",
+  "pytest",
+]
+[tool.hatch.envs.default.scripts]
+test = "pytest {args:tests}"
+test-cov = "coverage run -m pytest {args:tests}"
+cov-report = [
+  "- coverage combine",
+  "coverage report",
+]
+cov = [
+  "test-cov",
+  "cov-report",
+]
 
-[tool.poetry.group.dev.dependencies]
-pylint = "^2.17.2"
-pyright = "^1.1.301"
+[[tool.hatch.envs.all.matrix]]
+python = ["3.9", "3.10", "3.11", "3.12"]
 
-[tool.pyright]
-pythonVersion = "3.9"
-pythonPlatform = "Linux"
-typeCheckingMode = "strict"
+[tool.hatch.envs.types]
+dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/promethium tests}"
 
+[tool.coverage.run]
+source_pkgs = ["promethium", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/promethium/__about__.py",
+]
+
+[tool.coverage.paths]
+promethium = ["src/promethium", "*/promethium/src/promethium"]
+tests = ["tests", "*/promethium/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
