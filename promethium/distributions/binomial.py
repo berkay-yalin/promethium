@@ -25,8 +25,8 @@ def pmf(x: int, n: int, p: float) -> Decimal:
     return pmf_calculate(x, n, Decimal(str(p)))
 
 
-def cdf_calculate(k: int, n: int, p: Decimal) -> Decimal:
-    return sum((pmf_calculate(i, n, p) for i in range(k + 1)), Decimal())
+def cdf_calculate(k_upper: int, n: int, p: Decimal, k_lower: int = 0) -> Decimal:
+    return sum((pmf_calculate(i, n, p) for i in range(k_lower, k_upper + 1)), Decimal())
 
 def cdf(x: int, n: int, p: float) -> Decimal:
     pmf_validate(x, n, p)

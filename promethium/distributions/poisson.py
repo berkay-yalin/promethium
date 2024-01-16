@@ -19,8 +19,8 @@ def pmf(k: int, lambda_: Union[int, float]) -> float:
     return float(pmf_calculate(k, Decimal(str(lambda_))))
 
 
-def cdf_calculate(k: int, lambda_: Decimal) -> Decimal:
-    return sum((pmf_calculate(i, lambda_) for i in range(k + 1)), Decimal())
+def cdf_calculate(k_upper: int, lambda_: Decimal, k_lower: int = 0) -> Decimal:
+    return sum((pmf_calculate(i, lambda_) for i in range(k_lower, k_upper + 1)), Decimal())
 
 def cdf(k: int, lambda_: Union[int, float]) -> float:
     pmf_validate(k, lambda_)
