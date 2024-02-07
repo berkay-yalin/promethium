@@ -31,36 +31,6 @@ Documentation = "https://github.com/berkay-yalin/promethium#readme"
 Issues = "https://github.com/berkay-yalin/promethium/issues"
 Source = "https://github.com/berkay-yalin/promethium"
 
-[tool.hatch.version]
-path = "src/promethium/__about__.py"
-
-[tool.hatch.envs.default]
-dependencies = [
-  "coverage[toml]>=6.5",
-  "pytest",
-]
-[tool.hatch.envs.default.scripts]
-test = "pytest {args:tests}"
-test-cov = "coverage run -m pytest {args:tests}"
-cov-report = [
-  "- coverage combine",
-  "coverage report",
-]
-cov = [
-  "test-cov",
-  "cov-report",
-]
-
-[[tool.hatch.envs.all.matrix]]
-python = ["3.9", "3.10", "3.11", "3.12"]
-
-[tool.hatch.envs.types]
-dependencies = [
-  "mypy>=1.0.0",
-]
-[tool.hatch.envs.types.scripts]
-check = "mypy --install-types --non-interactive {args:src/promethium tests}"
-
 [tool.coverage.run]
 source_pkgs = ["promethium", "tests"]
 branch = true

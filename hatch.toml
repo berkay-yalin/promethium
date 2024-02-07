@@ -1,0 +1,36 @@
+[version]
+path = "src/promethium/__about__.py"
+
+[envs.default]
+path = ".hatch"
+dependencies = [
+    "coverage[toml]>=6.5",
+    "pytest",
+    "pyright",
+    "pylint",
+    "colorama==0.4.6",
+    "scipy",
+    "pipdeptree==2.13.2"
+]
+
+[envs.default.scripts]
+test = "pytest {args:tests}"
+test-cov = "coverage run -m pytest {args:tests}"
+cov-report = [
+  "- coverage combine",
+  "coverage report",
+]
+cov = [
+  "test-cov",
+  "cov-report",
+]
+
+[[envs.all.matrix]]
+python = ["3.9", "3.10", "3.11", "3.12"]
+
+[envs.types]
+dependencies = [
+  "mypy>=1.0.0",
+]
+[envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/promethium tests}"

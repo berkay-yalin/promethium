@@ -1,8 +1,9 @@
 {
     "recommendations": [
         "ms-python.python",
+        "ms-python.pylint",
         "ms-pyright.pyright",
-        "bungcip.better-toml",
-        "bierner.markdown-preview-github-styles",
+        "tamasfe.even-better-toml",
+        "bierner.markdown-preview-github-styles"
     ]
 }

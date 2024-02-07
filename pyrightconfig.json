@@ -1,0 +1,21 @@
+{
+    "pythonVersion ": "3.9",
+    "pythonPlatform": "Linux",
+    "typeCheckingMode ": "strict",
+
+    "include": [
+        "src",
+        "tests"
+    ],
+
+    "exclude": [
+        "**/node_modules",
+        "**/__pycache__",
+        "src/experimental",
+        "src/typestubs"
+    ],
+
+    "deprecateTypingAliases": true,
+    "reportMissingImports": "error",
+    "reportMissingModuleSource": "error",
+}

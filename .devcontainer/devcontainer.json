@@ -1,0 +1,25 @@
+{
+	"name": "Debian",
+	"image": "mcr.microsoft.com/devcontainers/base:bookworm",
+	"features": {
+		"ghcr.io/devcontainers/features/python:1": {
+			"version": "3.12.0",
+			"installTools": false,
+			"optimize": false,
+			"installPath": "/usr/local/python",
+			"installJupyterlab": false
+		}
+	},
+	"postCreateCommand": "bash ./.devcontainer/postCreateCommand.sh",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"ms-python.pylint",
+				"ms-pyright.pyright",
+				"tamasfe.even-better-toml",
+				"bierner.markdown-preview-github-styles"
+			]
+		}
+	}
+}
