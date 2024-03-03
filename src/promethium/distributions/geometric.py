@@ -17,6 +17,10 @@ def pmf_calculate(x: int, p: Decimal) -> Decimal:
 
 def pmf(x: int, p: Union[int, float]) -> Decimal:
     pmf_validate(x, p)
+
+    if x == 0:
+        return Decimal("0.0")
+
     return pmf_calculate(x, Decimal(str(p)))
 
 
